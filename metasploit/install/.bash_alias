@@ -1,0 +1,1 @@
+alias msfconsole="cd $PWD && docker-compose run --rm metasploit"
