@@ -14,6 +14,7 @@ RUN chmod 755 /usr/local/bin/run.sh
 RUN useradd -m -d /home/msf -s /bin/bash -U msf
 RUN printf "msf\tALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+EXPOSE 4444:4444
 USER msf
 WORKDIR /home/msf
 CMD ["/usr/local/bin/run.sh"]
