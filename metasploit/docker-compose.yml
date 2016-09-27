@@ -5,4 +5,4 @@ services:
       ports:
          - 4444:4444
       volumes:
-          - ./data/msf4:/home/msf/.msf4
+         - ./data/msf4:/home/msf/.msf4
