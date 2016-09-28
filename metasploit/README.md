@@ -1,11 +1,17 @@
 # Metasploit
-This is a simple docker container using Ubuntu 14.04 and Rapid 7's apt repositories. Your .msf4 data will be stored in data/msf4 if you either use docker-compose or add the volume when you start docker.  docker-compose is definitely the easiest way to use this. I've provided a couple of bash aliases to make running these even easier.
+This is a simple docker container using Ubuntu 14.04 and Rapid 7's apt repositories. I've included a correct editor and .vimrc so you can also edit modules easily as well as a number of bash aliases to make life easier.
 
 # Running msfconsole
-docker-compose run --rm metasploit
+docker run -P -it --rm hal3002/metasploit
 
-# Bash aliases
-source install/.bash_alias
+# Keep your database
+docker run -P -it --rm -v $HOME/.msf4:/home/msf/.msf4 hal3002/metasploit
+
+# Bash aliases!
+source bash_alias
+metasploit
 msfconsole
-
-
+pattern_create -l 1024
+metasm_shell
+msfbinscan
+msfvenom
