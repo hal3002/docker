@@ -1,10 +1,14 @@
 #!/bin/bash
 
+export EDITOR=/usr/bin/vim
+
 if [ ! -d /home/msf/.msf4 ]; then
    mkdir /home/msf/.msf4
 fi
 
-msfdb init &> /dev/null
-echo "Waiting to let the database start"
-sleep 5
-sudo /usr/bin/msfconsole
+msfdb init && msfdb start &> /dev/null
+
+sudo tmux new-session -d -s metasploit 
+sudo tmux rename-window -t metasploit:0 msfconsole
+sudo tmux send-keys -t metasploit:0 "/usr/bin/msfconsole" C-m
+sudo tmux attach -t metasploit
