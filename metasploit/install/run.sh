@@ -7,6 +7,8 @@ if [ ! -d /home/msf/.msf4 ]; then
 fi
 
 msfdb init && msfdb start &> /dev/null
+echo "Waiting for the database instance to start"
+sleep 10
 
 sudo tmux new-session -d -s metasploit 
 sudo tmux rename-window -t metasploit:0 msfconsole

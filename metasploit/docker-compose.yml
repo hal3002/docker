@@ -1,9 +1,12 @@
 version: '2'
 services:
    metasploit:
-      build: .
+      image: hal3002/metasploit
       ports:
+         - 80:80
+         - 443:443
          - 4444:4444
+         - 5555:5555
       volumes:
          - ./data/msf4:/home/msf/.msf4
          - ./data/scripts:/home/msf/scripts
