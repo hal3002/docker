@@ -1,6 +1,6 @@
 version: '2'
 services:
-   clamav:
+   clamscan:
       image: hal3002/clamav
 
       volumes:
