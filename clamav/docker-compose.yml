@@ -1,0 +1,9 @@
+version: '2'
+services:
+   clamav:
+      image: hal3002/clamav
+
+      volumes:
+         - ./data/rules:/tmp/rules
+         - ./data/samples:/tmp/samples
+         - ./data/results:/tmp/results
