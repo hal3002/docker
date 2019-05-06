@@ -1,12 +1,12 @@
 metasploit_path='/opt/metasploit-framework'
 ruby_path="$metasploit_path/embedded/bin/ruby"
 
-alias metasploit="docker run -P -it --rm -v $HOME/.msf4:/home/msf/.msf4 hal3002/metasploit"
+alias metasploit="docker run -P -it --rm -v $HOME/.msf4:/home/msfadmin/.msf4 hal3002/metasploit"
 
 for cmd in msfconsole msfvenom msfdb msfrop msfbinscan; do
-   alias $cmd="docker run -P -it --rm -v $HOME/.msf4:/home/msf/.msf4 hal3002/metasploit $metasploit_path/bin/$cmd"
+   alias $cmd="docker run -P -it --rm -v $HOME/.msf4:/home/msfadmin/.msf4 hal3002/metasploit $metasploit_path/bin/$cmd"
 done
 
 for cmd in pattern_create pattern_offset metasm_shell; do
-   alias $cmd="docker run -P -it --rm -v $HOME/.msf4:/home/msf/.msf4 hal3002/metasploit $ruby_path $metasploit_path/embedded/framework/tools/exploit/$cmd.rb"
+   alias $cmd="docker run -P -it --rm -v $HOME/.msf4:/home/msfadmin/.msf4 hal3002/metasploit $ruby_path $metasploit_path/embedded/framework/tools/exploit/$cmd.rb"
 done

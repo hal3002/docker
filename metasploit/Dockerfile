@@ -11,12 +11,17 @@ RUN apt-get -y install metasploit-framework
 COPY install/run.sh /usr/local/bin/run.sh
 RUN chmod 755 /usr/local/bin/run.sh
 
-RUN useradd -m -d /home/msf -s /bin/bash -U msf
-COPY install/vimrc /home/msf/.vimrc
-RUN printf "msf\tALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+RUN useradd -m -d /home/msfadmin -s /bin/bash -U msfadmin
+COPY install/vimrc /home/msfadmin/.vimrc
+COPY install/listeners.rc /home/msfadmin/listeners.rc
+RUN printf "msfadmin\tALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-EXPOSE 4444:4444
+EXPOSE 80:80
+EXPOSE 443:443
+EXPOSE 7777:7777
+EXPOSE 8888:8888
+EXPOSE 9999:9999
 
-USER msf
-WORKDIR /home/msf
+USER msfadmin 
+WORKDIR /home/msfadmin
 CMD ["/usr/local/bin/run.sh"]
